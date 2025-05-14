@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<h2>Lista de Tareas</h2>
+<ul>
+    {% for tarea in tasks %}
+        <li>
+            <strong>{{ tarea['title'] }}</strong> - {{ tarea['description'] }} 
+            {% if tarea['completed'] %}✔️{% endif %}
+        </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

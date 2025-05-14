@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Gestión de Tareas{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Inicio</a>
+        {% if session.get('username') %}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Salir</a>
+        {% else %}
+            <a href="/login">INICIAR SESION</a>
+            <a href="/register">Registrarse</a>
+        {% endif %}
+    </nav>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+      {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+</html>

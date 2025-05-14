@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<h2>Tus Tareas</h2>
+<form method="post">
+    <input type="text" name="title" placeholder="Título" required>
+    <input type="text" name="description" placeholder="Descripción">
+    <button type="submit">Crear</button>
+</form>
+<ul>
+    {% for tarea in tasks %}
+    <li>
+        <strong>{{ tarea['title'] }}</strong> - {{ tarea['description'] }}
+        {% if not tarea['completed'] %}
+            <a href="/completar/{{ tarea['id'] }}">[Marcar como completada]</a>
+        {% else %}
+            ✔️
+        {% endif %}
+        <a href="/eliminar/{{ tarea['id'] }}">[Eliminar]</a>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}
